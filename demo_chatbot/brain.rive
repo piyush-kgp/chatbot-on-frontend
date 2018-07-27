@@ -1,0 +1,28 @@
+// Chatbot's brain
+! version = 2.0
+
++ hello|hi [*]
+- Hi
+
++ [*] romantic [*]
+- Sure. Dimmimg the lights and playing All of me by John Legend. Also, would you like to order some fresh strawberries dipped in dark chocolate.
+
++ sure
+- Order placed. Playing the song
+
++ stop
+- Music Player has been stopped
+
++ no
+- Okay. Your order has been placed
+
+
++ [*] tired|tiring|energy [*]
+- Please have some Red Bull from the mini fridge placed on the right. Also, would you like to try out our in-room spa facilities which will rejuvenate your body and mind?
+
++ alright
+- Okay. Spa Services will arrive at your room soon.
+
+
++ *
+- Sorry I could not get that. Can you say that again please?
