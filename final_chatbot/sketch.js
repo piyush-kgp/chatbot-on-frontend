@@ -1,46 +1,47 @@
 
-
 function setup(){
-  console.log('setup fn is called');
+  noCanvas();
+  console.log('set up called');
+  let speech = new p5.Speech();
+  speech.setVoice('Tessa');
 
+  let lang = navigator.language || 'en-US';
+  let speechRec = new p5.SpeechRec(lang, gotSpeech);
+
+  let continuous = true;
+  let interim = false;
+  speechRec.start(continuous, interim);
 
   let bot =  new RiveScript();
-  // console.log(bot);
+  console.log(bot);
   bot.loadFile("brain.rive").then(brainReady).catch(brainError);
 
   function brainReady(){
     console.log('Chatbot Ready');
     bot.sortReplies();
-    let num=floor(random(1000));
-    console.log('Trying to achieve', num);
-    let reply = bot.reply("local-user", 'set ' +num);
   }
 
   function brainError(){
     console.log('Chatbot error');
   }
 
-  noCanvas();
-  let button = select('#submit');
-  let uip = select('#user_input');
-  let output = select('#output');
-
-  button.mousePressed(chat);
-
-  function chat(){
-    let x = uip.value();
-    let reply = bot.reply("local-user", x).then(function(reply) {
-      console.log("Bot> ", reply);
-      output.html(reply);
-    });
-
-
-    // let reply = bot.reply("local-user", x).then(replytome);
-    // function replytome(){
-    //   console.log("Bot says ", reply);
-    //   output.html(reply);
-    // }
-
-
+  function gotSpeech() {
+    let sp1 = select('#sp1');
+    let sp2 = select('#sp2');
+    console.log(speechRec.resultString, speechRec.resultConfidence);
+    // console.log(speechRec);
+    if (speechRec.resultValue){
+      // createP(speechRec.resultString);
+      let input = speechRec.resultString;
+      sp1.html(input);
+      let reply = bot.reply("local-user", input).then(function(reply) {
+        console.log("Bot> ", reply);
+        sp2.html(reply);
+        speech.speak(reply);
+      })
+    }
   }
+
+
+
 }

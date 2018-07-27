@@ -1,14 +1,18 @@
 // Chatbot's brain
 ! version = 2.0
 
-
-+ set #
-- <set num=<star>>
-
-+ #
-* <star> > <get num> => pick a lower number.
-* <star> < <get num> => pick a higher number.
-* <star> == <get num> => you got it!
+! sub who's = who is
 
 + *
-- Guess a number between 0 and 999.
+- try saying knock knock
+
++ [*] knock knock [*]
+- Who's there?
+
++ *
+% who is there
+- <star1> who
+
++ *
+% * who
+- hahahahahahah
